@@ -11,7 +11,11 @@ func main() {
 	router := gin.Default()
 	router.Use(middleware.CORSMiddleware())
 
+	router.GET("/", func(ctx *gin.Context) {
+		ctx.JSON(200, gin.H{"message": "Welcome to Image Tool API, use the /resize endpoint to resize an image."})
+	})
+
 	router.POST("/resize", handler.ResizeImage)
 
-	router.Run(":8080")
+	router.Run()
 }
